@@ -1,5 +1,5 @@
 
-import d3 from 'd3'
+import * as d3 from 'd3'
 
 /**
  * Default config.
@@ -16,10 +16,10 @@ const defaults = {
   thickness: 5,
 
   // label formatter
-  format: d3.format('%'),
+  format: d3.format('.0%'),
 
   // easing function
-  ease: 'linear',
+  ease: 'easeLinear',
 
   // transition duration
   duration: 300
@@ -77,7 +77,7 @@ export default class CircleChart {
       .append('g')
         .attr('transform', `translate(${radius}, ${radius})`)
 
-    this.arc = d3.svg.arc()
+    this.arc = d3.arc()
       .innerRadius(radius - thickness)
       .outerRadius(radius)
       .startAngle(0)
@@ -107,7 +107,7 @@ export default class CircleChart {
 
     this.fg.transition()
       .duration(duration)
-      .ease(ease)
+      .ease(d3[ease])
       .call(tween(this.arc), (2 * Math.PI) * data.value)
 
     this.label.text(format(data.value))
