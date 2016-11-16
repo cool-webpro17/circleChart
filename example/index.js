@@ -20,7 +20,7 @@ class App extends Component {
       target: this.refs.c,
       thickness: 1,
       format: d => `${total * d | 0}ms`,
-      ease: 'elastic',
+      ease: 'easeElastic',
       duration: 600
     })
 
